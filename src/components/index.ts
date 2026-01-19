@@ -1,3 +1,3 @@
-export { default as Modal } from './Modal';
-export { default as TextInput } from './TextInput';
-export { default as Skeleton } from './Skeleton';
+export { default as Modal } from "./Modal/Modal";
+export { default as TextInput } from "./Input/Input";
+export { default as Skeleton } from "./Skeleton/Skeleton";

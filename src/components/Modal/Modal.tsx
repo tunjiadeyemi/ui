@@ -1,43 +1,16 @@
-import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-
-type RevealMode = 'fade' | 'slide-right' | 'slide-bottom';
-
-interface ModalProps {
-  children: React.ReactNode;
-  className?: string;
-  revealMode?: RevealMode;
-  showModal?: boolean;
-  onClose?: () => void;
-  isDrag?: boolean;
-}
-
-const revealVariants = {
-  fade: {
-    initial: { opacity: 0 },
-    animate: { opacity: 1 },
-    exit: { opacity: 0 }
-  },
-  'slide-right': {
-    initial: { x: '100%', opacity: 0 },
-    animate: { x: 0, opacity: 1 },
-    exit: { x: '100%', opacity: 0 }
-  },
-  'slide-bottom': {
-    initial: { y: '100%', opacity: 0 },
-    animate: { y: 0, opacity: 1 },
-    exit: { y: '100%', opacity: 0 }
-  }
-};
+import { ModalProps } from "./types";
+import { revealVariants } from "./constant";
 
 const Modal = ({
-  children,
-  className,
-  revealMode = 'fade',
+  isDrag = false,
   showModal = true,
   onClose,
-  isDrag = false
+  children,
+  className,
+  revealMode = "fade",
 }: ModalProps) => {
   const variants = revealVariants[revealMode];
 
@@ -62,7 +35,7 @@ const Modal = ({
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
           className={`fixed inset-0 bg-black/80 flex items-center z-50 ${
-            revealMode === 'slide-right' ? 'justify-end' : 'justify-center'
+            revealMode === "slide-right" ? "justify-end" : "justify-center"
           }`}
           onClick={handleOverlayClick}
         >
@@ -71,10 +44,10 @@ const Modal = ({
             initial={variants.initial}
             animate={variants.animate}
             exit={variants.exit}
-            transition={{ duration: 0.4, ease: 'easeInOut' }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
             className={`${className}`}
             onClick={(e) => e.stopPropagation()}
-            drag={revealMode === 'slide-bottom' ? 'y' : false}
+            drag={revealMode === "slide-bottom" ? "y" : false}
             dragConstraints={{ top: 0, bottom: 0 }}
             dragElastic={{ top: 0, bottom: 0.5 }}
             onDragEnd={handleDragEnd}
