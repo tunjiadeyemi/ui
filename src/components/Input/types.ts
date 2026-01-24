@@ -1,5 +1,5 @@
 export interface TextInputProps {
-  type?: "password" | "otp" | "text" | "email" | "number";
+  type?: 'password' | 'otp' | 'text' | 'email' | 'number';
   value?: string;
   onOtpClick?: () => void;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -15,4 +15,6 @@ export interface TextInputProps {
   borderRadius?: string;
   height?: string;
   width?: string;
+  eyeIcon?: React.ReactNode;
+  eyeClosedIcon?: React.ReactNode;
 }

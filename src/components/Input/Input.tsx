@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import { Eye, EyeClosed } from "lucide-react";
-import { TextInputProps } from "./types";
+import { useState, useEffect } from 'react';
+import { Eye, EyeClosed } from 'lucide-react';
+import { TextInputProps } from './types';
 
 const Input = ({
   onChange,
@@ -13,12 +13,14 @@ const Input = ({
   className,
   placeholder,
   errorMessage,
-  width = "100%",
-  height = "40px",
-  color = "#6B2CE9",
-  textColor = "white",
-  borderRadius = "10px",
-  backgroundColor = "#1F1F23",
+  width = '100%',
+  height = '40px',
+  color = '#6B2CE9',
+  textColor = 'white',
+  borderRadius = '10px',
+  backgroundColor = '#1F1F23',
+  eyeIcon = <Eye className="cursor-pointer" size={18} />,
+  eyeClosedIcon = <EyeClosed className="cursor-pointer" size={18} />
 }: TextInputProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -27,7 +29,7 @@ const Input = ({
     setShowPassword(!showPassword);
   };
 
-  const validateInput = (inputValue: string = "") => {
+  const validateInput = (inputValue: string = '') => {
     if (!validate) {
       setError(null);
       return true;
@@ -47,35 +49,35 @@ const Input = ({
 
     // -- type-specific validation
     switch (type) {
-      case "email":
+      case 'email':
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (inputValue && !emailRegex.test(inputValue)) {
-          setError(errorMessage || "Invalid email address");
+          setError(errorMessage || 'Invalid email address');
           return false;
         }
         break;
 
-      case "password":
+      case 'password':
         if (!minLength && inputValue.length < 8) {
-          setError(errorMessage || "Password must be at least 8 characters");
+          setError(errorMessage || 'Password must be at least 8 characters');
           return false;
         }
         break;
 
-      case "otp":
+      case 'otp':
         if (inputValue && !/^\d*$/.test(inputValue)) {
-          setError(errorMessage || "OTP must contain only numbers");
+          setError(errorMessage || 'OTP must contain only numbers');
           return false;
         }
         if (!minLength && !maxLength && inputValue.length !== 6) {
-          setError(errorMessage || "OTP must be 6 digits");
+          setError(errorMessage || 'OTP must be 6 digits');
           return false;
         }
         break;
 
-      case "number":
+      case 'number':
         if (inputValue && isNaN(Number(inputValue))) {
-          setError(errorMessage || "Must be a valid number");
+          setError(errorMessage || 'Must be a valid number');
           return false;
         }
         break;
@@ -91,12 +93,12 @@ const Input = ({
     }
   }, [value, validate, minLength, maxLength, type]);
 
-  if (type === "password") {
+  if (type === 'password') {
     return (
       <div style={{ width }}>
-        <div className="relative" style={{ width: "100%" }}>
+        <div className="relative" style={{ width: '100%' }}>
           <input
-            type={showPassword ? "text" : "password"}
+            type={showPassword ? 'text' : 'password'}
             value={value}
             onChange={onChange}
             placeholder={placeholder}
@@ -105,38 +107,29 @@ const Input = ({
               color: textColor,
               borderRadius,
               height,
-              width: "100%",
+              width: '100%'
             }}
-            className={`border ${error ? "border-red-500" : "border-transparent"} placeholder:text-sm text-sm px-4 pr-12 placeholder:opacity-30 focus:outline-none transition ${className}`}
+            className={`border ${error ? 'border-red-500' : 'border-transparent'} placeholder:text-sm text-sm px-4 pr-12 placeholder:opacity-30 focus:outline-none transition ${className}`}
             onFocus={(e) => !error && (e.target.style.borderColor = color)}
-            onBlur={(e) =>
-              (e.target.style.borderColor = error ? "#ef4444" : "transparent")
-            }
+            onBlur={(e) => (e.target.style.borderColor = error ? '#ef4444' : 'transparent')}
           />
 
           <button
             type="button"
             onClick={togglePasswordVisibility}
             className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white transition-colors"
-            aria-label={showPassword ? "Hide password" : "Show password"}
+            aria-label={showPassword ? 'Hide password' : 'Show password'}
           >
-            {showPassword ? (
-              <Eye className="cursor-pointer" size={18} />
-            ) : (
-              <EyeClosed className="cursor-pointer" size={18} />
-            )}
+            {showPassword ? eyeIcon : eyeClosedIcon}
           </button>
         </div>
         {error && <p className="text-red-500 text-xs mt-1 px-1">{error}</p>}
       </div>
     );
-  } else if (type === "otp") {
+  } else if (type === 'otp') {
     return (
       <div style={{ width }}>
-        <div
-          className="relative flex items-center gap-4"
-          style={{ width: "100%" }}
-        >
+        <div className="relative flex items-center gap-4" style={{ width: '100%' }}>
           <input
             type="number"
             value={value}
@@ -147,13 +140,11 @@ const Input = ({
               color: textColor,
               borderRadius,
               height,
-              width: "100%",
+              width: '100%'
             }}
-            className={`border ${error ? "border-red-500" : "border-transparent"} placeholder:text-sm text-sm px-4 pr-28 placeholder:opacity-30 focus:outline-none transition ${className}`}
+            className={`border ${error ? 'border-red-500' : 'border-transparent'} placeholder:text-sm text-sm px-4 pr-28 placeholder:opacity-30 focus:outline-none transition ${className}`}
             onFocus={(e) => !error && (e.target.style.borderColor = color)}
-            onBlur={(e) =>
-              (e.target.style.borderColor = error ? "#ef4444" : "transparent")
-            }
+            onBlur={(e) => (e.target.style.borderColor = error ? '#ef4444' : 'transparent')}
           />
 
           <button
@@ -181,13 +172,11 @@ const Input = ({
             color: textColor,
             borderRadius,
             height,
-            width: "100%",
+            width: '100%'
           }}
-          className={`border ${error ? "border-red-500" : "border-transparent"} placeholder:text-sm text-sm px-4 placeholder:opacity-30 focus:outline-none transition ${className}`}
+          className={`border ${error ? 'border-red-500' : 'border-transparent'} placeholder:text-sm text-sm px-4 placeholder:opacity-30 focus:outline-none transition ${className}`}
           onFocus={(e) => !error && (e.target.style.borderColor = color)}
-          onBlur={(e) =>
-            (e.target.style.borderColor = error ? "#ef4444" : "transparent")
-          }
+          onBlur={(e) => (e.target.style.borderColor = error ? '#ef4444' : 'transparent')}
         />
         {error && <p className="text-red-500 text-xs mt-1 px-1">{error}</p>}
       </div>
