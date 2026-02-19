@@ -15,7 +15,7 @@ const Input = ({
   errorMessage,
   width = '100%',
   height = '40px',
-  color = '#6B2CE9',
+  borderColor = '#6B2CE9',
   textColor = 'white',
   borderRadius = '10px',
   backgroundColor = '#1F1F23',
@@ -110,7 +110,7 @@ const Input = ({
               width: '100%'
             }}
             className={`border ${error ? 'border-red-500' : 'border-transparent'} placeholder:text-sm text-sm px-4 pr-12 placeholder:opacity-30 focus:outline-none transition ${className}`}
-            onFocus={(e) => !error && (e.target.style.borderColor = color)}
+            onFocus={(e) => !error && (e.target.style.borderColor = borderColor)}
             onBlur={(e) => (e.target.style.borderColor = error ? '#ef4444' : 'transparent')}
           />
 
@@ -143,7 +143,7 @@ const Input = ({
               width: '100%'
             }}
             className={`border ${error ? 'border-red-500' : 'border-transparent'} placeholder:text-sm text-sm px-4 pr-28 placeholder:opacity-30 focus:outline-none transition ${className}`}
-            onFocus={(e) => !error && (e.target.style.borderColor = color)}
+            onFocus={(e) => !error && (e.target.style.borderColor = borderColor)}
             onBlur={(e) => (e.target.style.borderColor = error ? '#ef4444' : 'transparent')}
           />
 
@@ -175,7 +175,7 @@ const Input = ({
             width: '100%'
           }}
           className={`border ${error ? 'border-red-500' : 'border-transparent'} placeholder:text-sm text-sm px-4 placeholder:opacity-30 focus:outline-none transition ${className}`}
-          onFocus={(e) => !error && (e.target.style.borderColor = color)}
+          onFocus={(e) => !error && (e.target.style.borderColor = borderColor)}
           onBlur={(e) => (e.target.style.borderColor = error ? '#ef4444' : 'transparent')}
         />
         {error && <p className="text-red-500 text-xs mt-1 px-1">{error}</p>}

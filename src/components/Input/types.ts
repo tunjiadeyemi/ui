@@ -10,7 +10,7 @@ export interface TextInputProps {
   minLength?: number;
   maxLength?: number;
   errorMessage?: string;
-  color?: string;
+  borderColor?: string;
   textColor?: string;
   borderRadius?: string;
   height?: string;
